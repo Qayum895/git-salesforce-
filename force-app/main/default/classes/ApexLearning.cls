@@ -5,11 +5,10 @@ public class ApexLearning {
   
     public void getData(){
         name = 'Amar Ganji';
-        profession = 'Release Engineer';
+        profession = 'Senior Release Engineer';
         
         System.debug(name);
         System.debug('profession' + profession);
         
-    } 
-    
+    }
 }
