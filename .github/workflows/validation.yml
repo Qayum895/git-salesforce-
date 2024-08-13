@@ -1,0 +1,55 @@
+---
+    name: PR Validation for Salesforce Metadata
+    on:
+         pull_request:
+           branches:
+             - Dev
+     jobs:
+         validate:
+           runs-on: ubuntu-latest
+           steps:
+             - name: Checkout code
+               uses: actions/checkout@v2
+   
+             - name: Set up Salesforce CLI
+               uses: sfdx-actions/setup-sfdx@v1
+               with:
+                 version: latest
+   
+             - name: Check Salesforce CLI version
+               run: sfdx --version
+   
+             - name: Print environment variables
+               run:  printenv
+   
+             - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
+             - run: sf org login jwt --client-id 3MVG9CecKwYCDceQRpL9O8Hfersdjp993muzGTxjN_DugY4Ni375dQAJwajf8TMm7LolxfCmpMRArfrDdoHbC --jwt-key-file server.key --username qayum@primesolution.com --instance-url https://primeonesolution-dev-ed.develop.my.salesforce.com --alias salesforceOrg
+             
+             - name: Debug Test Classes File
+               run:  cat test-classes.txt
+   
+             - name: Read Test Class Names from File
+               id: read-test-classes
+               run: |
+                 TEST_CLASSES=$(cat test-classes.txt | tr '\n' ',' | sed 's/,$//')
+                 if [ -z "$TEST_CLASSES" ]; then
+                   echo "TEST_CLASSES=" >> $GITHUB_ENV
+                   echo "RUN_TESTS=false" >> $GITHUB_ENV
+                 else
+                   echo "TEST_CLASSES=$TEST_CLASSES" >> $GITHUB_ENV
+                   echo "RUN_TESTS=true" >> $GITHUB_ENV
+                 fi
+   
+             - name: Run Specific Apex Tests
+               if: env.RUN_TESTS == 'true'
+               run: >
+                 sfdx force:apex:test:run -n ${{ env.TEST_CLASSES }} -r human -u
+                 qayum@primesolution.com
+   
+             - name: Validate Metadata
+               run: >
+                 if [ "${{ env.RUN_TESTS }}" == "true" ]; then
+                   sfdx force:source:deploy --checkonly --sourcepath force-app/main/default --target-org qayum@primesolution.com --testlevel RunSpecifiedTests --runtests "${{ env.TEST_CLASSES }}"
+                 else
+                   sfdx force:source:deploy --checkonly --sourcepath force-app/main/default --target-org qayum@primesolution.com --testlevel NoTestRun
+                 fi
