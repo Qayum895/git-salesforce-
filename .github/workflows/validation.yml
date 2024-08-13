@@ -44,13 +44,12 @@
                 echo "TEST_CLASSES=$TEST_CLASSES" >> $GITHUB_ENV
                 echo "RUN_TESTS=true" >> $GITHUB_ENV
               fi
-
           - name: Run Specific Apex Tests
             if: env.RUN_TESTS == 'true'
             run: >
               sfdx force:apex:test:run -n ${{ env.TEST_CLASSES }} -r human -u
               qayum@primesolution.com
-              
+
           - name: Validate Metadata
             run: >
               if [ "${{ env.RUN_TESTS }}" == "true" ]; then
