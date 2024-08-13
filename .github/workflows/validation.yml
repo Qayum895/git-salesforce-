@@ -11,7 +11,7 @@
           - name: Checkout code
             uses: actions/checkout@v2
 
-            
+
           - name: Set up Salesforce CLI
             uses: sfdx-actions/setup-sfdx@v1
             with:
@@ -25,7 +25,7 @@
 
           - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
           - run: sf org login jwt --client-id
-              3MVG9CecKwYCDceQRpL9O8Hfersdjp993muzGTxjN_DugY4Ni375dQAJwajf8TMm7LolxfCmpMRArfrDdoHbC
+              3MVG9CecKwYCDceQRpL9O8HferqsPhD5nMbvBTKaOaE2mL9QkfucSFpFa3vqKHuNHwOE0pG2Cqu8FwFSyS41q
               --jwt-key-file server.key --username qayum@primesolution.com
               --instance-url
               https://primeonesolution-dev-ed.develop.my.salesforce.com --alias
@@ -45,6 +45,7 @@
                 echo "TEST_CLASSES=$TEST_CLASSES" >> $GITHUB_ENV
                 echo "RUN_TESTS=true" >> $GITHUB_ENV
               fi
+
           - name: Run Specific Apex Tests
             if: env.RUN_TESTS == 'true'
             run: >
