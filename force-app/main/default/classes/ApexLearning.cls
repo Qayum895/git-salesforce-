@@ -5,7 +5,7 @@ public class ApexLearning {
   
     public void getData(){
      
-        name = 'Amar & JP';
+        name = 'Qayum';
         profession = 'Release Engineer';
         
         System.debug(name);
