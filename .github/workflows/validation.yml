@@ -1,61 +1,72 @@
 ---
-    name: PR Validation for Salesforce Metadata
-    on:
-      pull_request:
-        branches:
-          - Dev
-    jobs:
-      validate:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout code
-            uses: actions/checkout@v2
-
-          - name: Set up Salesforce CLI
-            uses: sfdx-actions/setup-sfdx@v1
-            with:
-              version: latest
-
-          - name: Check Salesforce CLI version
-            run: sfdx --version
-
-          - name: Print environment variables
-            run: printenv
-
-          - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
-          - run: sf org login jwt --client-id
-              3MVG9CecKwYCDceQRpL9O8Hfersdjp993muzGTxjN_DugY4Ni375dQAJwajf8TMm7LolxfCmpMRArfrDdoHbC
-              --jwt-key-file server.key --username qayum@primesolution.com
-              --instance-url
-              https://primeonesolution-dev-ed.develop.my.salesforce.com --alias
-              salesforceOrg
-
-          - name: Debug Test Classes File
-            run: cat test-classes.txt
-
-          - name: Read Test Class Names from File
-            id: read-test-classes
-            run: |
-              TEST_CLASSES=$(cat test-classes.txt | tr '\n' ',' | sed 's/,$//')
-              if [ -z "$TEST_CLASSES" ]; then
-                echo "TEST_CLASSES=" >> $GITHUB_ENV
-                echo "RUN_TESTS=false" >> $GITHUB_ENV
-              else
-                echo "TEST_CLASSES=$TEST_CLASSES" >> $GITHUB_ENV
-                echo "RUN_TESTS=true" >> $GITHUB_ENV
-              fi
-
-          - name: Run Specific Apex Tests
-            if: env.RUN_TESTS == 'true'
-            run: >
-              sfdx force:apex:test:run -n ${{ env.TEST_CLASSES }} -r human -u
-              qayum@primesolution.com
-              
-          - name: Validate Metadata
-            run: >
-              if [ "${{ env.RUN_TESTS }}" == "true" ]; then
-                sfdx force:source:deploy --checkonly --sourcepath force-app/main/default --target-org qayum@primesolution.com --testlevel RunSpecifiedTests --runtests "${{ env.TEST_CLASSES }}"
-              else
-                sfdx force:source:deploy --checkonly --sourcepath force-app/main/default --target-org qayum@primesolution.com --testlevel NoTestRun
-              fi
-    
+  name: validate delta changes in PR
+  on:
+    pull_request:
+      branches:
+        - Dev
+  jobs:
+    SFDX-CLI-Deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/setup-node@v4
+          with:
+            node-version: "20"
+        - run: echo "🐧 GitHub Action running on ${{ runner.os }}"
+        - run: echo "🔎 Retrieving Dev Branch from ${{ github.repository }}."
+        - uses: actions/checkout@v4
+          with:
+            ref: Dev
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+        - name: Install Salesforce CLI
+          run: |
+            npm install -g @salesforce/cli
+            sf --help
+        - name: Setup Python Environment
+          run: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install xq
+            pip install yq
+        - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
+        - run: sf org login jwt --client-id 3MVG9CecKwYCDceQRpL9O8Hfersdjp993muzGTxjN_DugY4Ni375dQAJwajf8TMm7LolxfCmpMRArfrDdoHbC --jwt-key-file server.key --username qayum@primesolution.com --instance-url https://primeonesolution-dev-ed.develop.my.salesforce.com --alias salesforceOrg
+        - name: Debug Test Classes File
+          run: cat test-classes.txt
+        - name: Read Test Class Names from File
+          id: read-test-classes
+          run: |
+            TEST_CLASSES=$(cat test-classes.txt | tr '\n' ',' | sed 's/,$//')
+            if [ -z "$TEST_CLASSES" ]; then
+              echo "TEST_CLASSES=" >> $GITHUB_ENV
+              echo "RUN_TESTS=false" >> $GITHUB_ENV
+            else
+              echo "TEST_CLASSES=$TEST_CLASSES" >> $GITHUB_ENV
+              echo "RUN_TESTS=true" >> $GITHUB_ENV
+            fi
+        - name: Install sfdxGitDelta
+          run: |
+            echo y | sf plugins install sfdx-git-delta
+        - name: Generate Delta between Dev and PR Branch
+          run: >
+            # Generate the delta changes between the base branch and the head of the PR
+  
+            sf sgd source delta --to "HEAD" --from "origin/Dev" --output "." --ignore .github/workflows/ignore.txt
+  
+            cat package/package.xml  # Output the generated package.xml for debugging
+        - name: Debug Environment Variables
+          run: |
+            echo "TEST_CLASSES=${{ env.TEST_CLASSES }}"
+            echo "RUN_TESTS=${{ env.RUN_TESTS }}"
+        - name: Validate Delta Components with Specified Tests
+          if: ${{ env.RUN_TESTS == 'true' }}
+          run: >
+            if [ -z "${{ env.TEST_CLASSES }}" ]; then
+              echo "No test classes specified. Exiting."
+              exit 1
+            fi
+  
+            echo "Running specified tests: ${{ env.TEST_CLASSES }}"
+  
+            sf project deploy validate --manifest package/package.xml --test-level RunSpecifiedTests --tests ${{ env.TEST_CLASSES }} --target-org salesforceOrg
