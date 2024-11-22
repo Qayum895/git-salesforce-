@@ -4,12 +4,12 @@ public class ApexLearning {
     public String profession ;
   
     public void getData(){
-        name = 'Mohammed Aamer';
-        profession = 'Release Engineer';
+        name = 'Mohammed Abrar';
+        profession = 'Release Manager';
         
         System.debug(name);
         System.debug('profession' + profession);
         
-    } 
+    }
     
 }
