@@ -50,7 +50,6 @@
 
       - name: Install dependencies
         run: pip install -r requirements.txt
-
       - name: Run Selenium Tests
         env:
           SALESFORCE_USERNAME: ${{ secrets.SALESFORCE_USERNAME }}
