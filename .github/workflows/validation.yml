@@ -30,6 +30,35 @@
             pip install --upgrade pip
             pip install xq
             pip install yq
+        - name: Install Salesforce CLI
+            pip install selenium
+            
+      selenium:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size=2g
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Selenium Tests
+        env:
+          SALESFORCE_USERNAME: ${{ secrets.SALESFORCE_USERNAME }}
+          SALESFORCE_PASSWORD: ${{ secrets.SALESFORCE_PASSWORD }}
+          SELENIUM_SERVER_URL: http://localhost:4444/wd/hub
+        run: |
+          pytest tests/selenium_salesforce_tests.py
+          
         - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
         - run: sf org login jwt --client-id 3MVG9CecKwYCDceQRpL9O8Hfersdjp993muzGTxjN_DugY4Ni375dQAJwajf8TMm7LolxfCmpMRArfrDdoHbC --jwt-key-file server.key --username qayum@primesolution.com --instance-url https://primeonesolution-dev-ed.develop.my.salesforce.com --alias salesforceOrg
         - name: Debug Test Classes File
