@@ -31,7 +31,7 @@
               pip install xq
               pip install yq
           - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
-          - run: sf org login jwt --client-id 3MVG9CecKwYCDceQRpL9O8Hfersdjp993muzGTxjN_DugY4Ni375dQAJwajf8TMm7LolxfCmpMRArfrDdoHbC --jwt-key-file server.key --username qayum@primesolution.com --instance-url https://login.salesforce.com --alias prod
+          - run: sf org login jwt --client-id 3MVG9CecKwYCDceQRpL9O8HferlPvkWdwKylSL3DnO_w4AfX8D4Dvd1WOIRwKH8um_NnWzIzAlnshLWz3rLfw --jwt-key-file server.key --username qayum@primesolution.com --instance-url https://login.salesforce.com --alias prod
           - name: Debug Test Classes File
             run: cat test-classes.txt
           - name: Read Test Class Names from File
