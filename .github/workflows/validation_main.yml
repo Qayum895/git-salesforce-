@@ -52,7 +52,7 @@
             run: >
               # Generate the delta changes between the base branch and the head of the PR
     
-              sf sgd source delta --to "HEAD" --from "origin/main" --output "." --ignore .github/workflows/ignore.txt    
+              sf sgd source delta --to "HEAD" --from "origin/main" --output "."   
           - name: Update API Version in package.xml
             run: |
                   sed -i 's|<version>55.0</version>|<version>61.0</version>|g' package/package.xml
