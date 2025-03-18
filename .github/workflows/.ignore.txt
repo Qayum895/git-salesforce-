@@ -1,0 +1,2 @@
+force-app/main/default/approvalProcesses
+force-app/main/default/processflowmigrations
