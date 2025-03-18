@@ -32,5 +32,5 @@ private class VerifyDateTest {
 /*
 Test 1112223355667890
 add Merge comments like
-Apex::[Amar Ganji, Pavan, JP, Qayum]::Apex
+Apex::[Amar Ganji, JP, Qayum]::Apex
 */
