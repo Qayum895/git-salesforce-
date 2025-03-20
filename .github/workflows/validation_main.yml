@@ -34,10 +34,12 @@ jobs:
       - name: Install sfdxGitDelta
         run: |
           echo y | sf plugins install sfdx-git-delta
+
       - name: Generate Delta between main and PR Branch
         run: >
-          mkdir -p delta
-          sf sgd source delta --to "HEAD" --from "origin/main" --output "delta"
+          # Generate the delta changes between the base branch and the head of the PR
+
+          sf sgd source delta --to "HEAD" --from "origin/main" --output "."
 
       - name: Install PMD
         run: |
