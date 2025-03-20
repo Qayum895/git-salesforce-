@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Apex Rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    
+    <description>Custom PMD ruleset for Salesforce Apex</description>
+
+    <!-- Example Rules -->
+    <rule ref="category/apex/bestpractices.xml/MethodNamingConventions"/>
+    <rule ref="category/apex/errorprone.xml/AvoidHardcodingId"/>
+    <rule ref="category/apex/performance.xml/AvoidDeeplyNestedIfStmts"/>
+</ruleset>
