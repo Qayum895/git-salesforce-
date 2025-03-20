@@ -36,8 +36,9 @@ jobs:
           echo y | sf plugins install sfdx-git-delta
       - name: Generate Delta between main and PR Branch
         run: >
-          sf sgd source delta --to "HEAD" --from "origin/main" --output "delta"  
-          
+          mkdir -p delta
+          sf sgd source delta --to "HEAD" --from "origin/main" --output "delta"
+
       - name: Install PMD
         run: |
           wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.0.0/pmd-bin-7.0.0.zip
