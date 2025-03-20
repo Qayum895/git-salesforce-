@@ -50,8 +50,7 @@ jobs:
       - name: Run PMD Static Code Analysis
         run: |
           mkdir -p pmd/reports
-          ./pmd-bin-7.0.0/bin/pmd check --dir delta/force-app --rulesets pmd/rulesets/apex-ruleset.xml --format text > pmd/reports/pmd-report.txt
-
+          ./pmd-bin-7.11.0/bin/pmd check --dir delta/force-app --rulesets pmd/rulesets/apex-ruleset.xml --format text > pmd/reports/pmd-report.txt
 
       - name: Show PMD Report
         run: |
