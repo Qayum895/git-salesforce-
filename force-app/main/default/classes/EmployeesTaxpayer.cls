@@ -2,13 +2,13 @@ public class EmployeesTaxpayer {
 
    public Boolean Employeesalary(Integer salary){
         Boolean Taxpayable;
-        String name = 'Mohammed Salman';
-        Taxpayable = true;
+        String name = 'Mohammed Zeeshan';
+        Taxpayable = false;
         System.debug('Name ' + name);
-        if(salary > 80000){
+        if(salary > 70000){
             return true;
         }else {
-            return false;
+            return false; //it is worked for giving the final return
         }
         
         
