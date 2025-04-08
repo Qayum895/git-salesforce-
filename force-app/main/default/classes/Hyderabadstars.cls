@@ -6,8 +6,8 @@ public class Hyderabadstars {
     
     public void getData(){   //This method help to store getData value
         
-        name = 'Mohammed Qayum';
-        age = '29' ;
+        name = 'Mohammed Salman';
+        age = '32' ;
         Married = true;
         system.debug(name);
         system.debug('age  ' + age);
