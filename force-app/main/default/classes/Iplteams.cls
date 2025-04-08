@@ -5,7 +5,7 @@ public class Iplteams {
     list<string>DelhiDaredevils = new list<string>{'Dhawan'};        
     list<string>Sunrisershyderabad = new list<string>{'Samad'};    
     list<string>Punjabkings = new list<string>{'Yuvraj'};
-    Iplcricketteams.put('Team1', Channaisuperkings);
+    Iplcricketteams.put('Team1', superkings);
     Iplcricketteams.put('Team2', DelhiDaredevils);    
     Iplcricketteams.put('Team3', Sunrisershyderabad);    
     Iplcricketteams.put('Team4', Punjabkings);
