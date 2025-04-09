@@ -8,6 +8,9 @@ public class Hyderabadstars {
         
         name = 'Mohammed Abrar';
         age = '29' ;
+        name = 'CSK';
+        age = '28' ;
+
         Married = true;
         system.debug(name);
         system.debug('age  ' + age);
