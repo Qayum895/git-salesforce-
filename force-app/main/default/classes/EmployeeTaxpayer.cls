@@ -5,7 +5,7 @@ public class EmployeeTaxpayer { //Requirement if the employee salary is greater-
         String name = 'Mohammed Abrar';			//Created String name is mohammed qayum.
         Taxpayable = true;						//Giving the boolean taxpayable value is true.
         System.debug('Name ' + name);			//Created System.debug method helps to print the value of name and gives output of variable in debug logs.
-        if(salary > 600000){					//Created If/Else condition given salary is greater than 500000.
+        if(salary > 888){                                                                 
             return Taxpayable;					//Return should be taxpayable with the value is ture.
         }else{									//Or Else
             return false;						//If Salary is less-than 500000 then its return false.
