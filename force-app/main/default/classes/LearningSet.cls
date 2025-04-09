@@ -1,7 +1,7 @@
 public class LearningSet {
     public set<integer> getSetData(){
         Set<integer> nameSet = new Set<integer>();
-        nameSet.add(1000);
+        nameSet.add(300);
         nameSet.add(200);
         nameSet.add(1000);
         nameSet.add(500);
