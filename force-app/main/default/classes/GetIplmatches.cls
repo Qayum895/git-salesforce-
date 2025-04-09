@@ -6,8 +6,8 @@ public class GetIplmatches {
             iplteams = new Map<String, List<String>>();
       
         List<string> ChannaiSuperKings =new List<string>();
-        ChannaiSuperKings.add('Ms Dhoni');
-        ChannaiSuperKings.add('Jadeja');
+        ChannaiSuperKings.add('Zeeshan');
+        ChannaiSuperKings.add('farhan');
         ChannaiSuperKings.add('Rayudu');
         
         List<string> SunrisersHyderabad =new List<string>();
