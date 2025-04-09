@@ -8,7 +8,7 @@ public class iplteam {
         List<string> Srhplayers = new List<string>();
         srhplayers.add('markram');
         srhplayers.add('Abhishek sharma');
-        srhplayers.add('Klasen');
+        srhplayers.add('Klasen12');
         allplayers.put('Sunrises Hyderabad',srhplayers);
         
         List<string> cskplayers = new List<string>();
