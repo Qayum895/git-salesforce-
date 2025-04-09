@@ -8,6 +8,8 @@ public class GetIplmatches {
         List<string> ChannaiSuperKings =new List<string>();
         ChannaiSuperKings.add('mohammed sami')
         ChannaiSuperKings.add('abrar')
+        ChannaiSuperKings.add('Zeeshan');
+        ChannaiSuperKings.add('farhan');
         ChannaiSuperKings.add('Rayudu');
         
         List<string> SunrisersHyderabad =new List<string>();
