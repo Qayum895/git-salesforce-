@@ -17,21 +17,19 @@ public class GetIplmatches {
         SunrisersHyderabad.add('Abhishek');
         SunrisersHyderabad.add('Klasin');
         
-        List<string> DelhiDaredavils =new List<string>();
-        DelhiDaredavils.add('Warner');
-        DelhiDaredavils.add('Salt');
-        DelhiDaredavils.add('Rishab pant');
-        SunrisersHyderabad.add('Cummins');
-
+        //List<string> DelhiDaredavils =new List<string>();
+        DelhiDaredavils.add('Qayum');
+        DelhiDaredavils.add('Salman');
+        DelhiDaredavils.add('Abrar');
         
-        //IplMap.put('ChannaiSuperKings', 'ChannaiSuperKings');
-        //IplMap.put('SunrisersHyderabad', 'SunrisersHyderabad');
-        //IplMap.put('DelhiDaredavils', 'DelhiDaredavils');
+        IplMap.put('ChannaiSuperKings', 'ChannaiSuperKings');
+        IplMap.put('SunrisersHyderabad', 'SunrisersHyderabad');
+        IplMap.put('DelhiDaredavils', 'DelhiDaredavils');
             
-       // system.debug('TeamA', + IplMap);
+       //system.debug('TeamA', + IplMap);
         //system.debug('TeamB', + IplMap.keys());    
         //system.debug('TeamC', + IplMap.values());
             
-        //return IplMap;
+        //return IplMap; {12312}
      }
 }
