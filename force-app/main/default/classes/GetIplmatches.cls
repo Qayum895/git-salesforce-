@@ -20,7 +20,7 @@ public class GetIplmatches {
         List<string> DelhiDaredavils =new List<string>();
         DelhiDaredavils.add('Warner');
         DelhiDaredavils.add('Salt');
-        DelhiDaredavils.add('Rishab');
+        DelhiDaredavils.add('Rishab pant');
         
         //IplMap.put('ChannaiSuperKings', 'ChannaiSuperKings');
         //IplMap.put('SunrisersHyderabad', 'SunrisersHyderabad');
