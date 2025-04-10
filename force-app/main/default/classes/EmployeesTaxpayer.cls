@@ -2,16 +2,16 @@ public class EmployeesTaxpayer {
 
    public Boolean Employeesalary(Integer salary){
         Boolean Taxpayable;
-        String name = 'Mohammed Zeeshan';
-        Taxpayable = false;
+        String name = 'Mohammed Abrar';
+        Taxpayable = true;
         System.debug('Name ' + name);
-        if(salary > 70000){
+        if(salary > 800){
             return true;
         }else {
             return false; //it is worked for giving the final return
         }
         
-        
+        //Git rebase testing
     }
     
 }
