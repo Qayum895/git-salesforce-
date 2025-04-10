@@ -10,7 +10,7 @@ public class GetIplmatches {
         ChannaiSuperKings.add('abrar')
         ChannaiSuperKings.add('Zeeshan');
         ChannaiSuperKings.add('farhan');
-        ChannaiSuperKings.add('Rayudu');
+        ChannaiSuperKings.add('Rahul drived');
         
         List<string> SunrisersHyderabad =new List<string>();
         SunrisersHyderabad.add('Markram');
