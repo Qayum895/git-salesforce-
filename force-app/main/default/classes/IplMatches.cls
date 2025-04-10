@@ -5,9 +5,9 @@ public class IplMatches {
         Map<String, List<String>> IplMap = new Map<String, List<String>>(); 
       
         List<string>ChannaiSuperKings =new List<string>();
-        ChannaiSuperKings.add('Raju');
-        ChannaiSuperKings.add('Jadeja');
-        ChannaiSuperKings.add('Rayudu');
+        ChannaiSuperKings.add('Azhar');
+        ChannaiSuperKings.add('Mohammed');
+        ChannaiSuperKings.add('Riyaz');
         
         List<string>SunrisersHyderabad =new List<string>();
         SunrisersHyderabad.add('Markram');
