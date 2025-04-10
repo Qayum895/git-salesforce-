@@ -10,7 +10,7 @@ public class newIplteams {
     Channaisuperkings.put('player3', Jadeja);    
     Channaisuperkings.put('player4', Bravo);
   system.debug('Channaisuperkings' + Channaisuperkings);
-  system.debug('player3 ' + Channaisuperkings.get('player3'));
+  system.debug('player3 ' + Chennaisuperkings.get('player3'));
     map<string,list<string>>Sunrisershyderabad = new map<string,list<string>>();
     list<string>Samad = new list<string>{'Samad'};
     list<string>Klasin = new list<string>{'Klasin'};        

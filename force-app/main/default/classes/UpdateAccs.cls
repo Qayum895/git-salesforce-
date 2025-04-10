@@ -5,7 +5,7 @@ public class UpdateAccs {
         system.debug('acclist ' + acclist);
         for(Account acc : acclist){
             if(acc.name == 'Apex Account'){
-                acc.phone = '12345678';
+                acc.phone = '789456123';
                 updateAcc.add(acc);
             }
         }
