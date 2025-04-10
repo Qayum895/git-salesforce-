@@ -21,6 +21,8 @@ public class GetIplmatches {
         DelhiDaredavils.add('Warner');
         DelhiDaredavils.add('Salt');
         DelhiDaredavils.add('Rishab pant');
+        SunrisersHyderabad.add('Cummins');
+
         
         //IplMap.put('ChannaiSuperKings', 'ChannaiSuperKings');
         //IplMap.put('SunrisersHyderabad', 'SunrisersHyderabad');
