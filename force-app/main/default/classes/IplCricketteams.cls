@@ -8,9 +8,9 @@ public class IplCricketteams {
         ChannaiSuperkings.add('Jadeja');
         
 		List<string> SunrisersHyderabad = new List<string>();
-        SunrisersHyderabad.add('Warner');
+        SunrisersHyderabad.add('David');
         SunrisersHyderabad.add('Samad');
-        SunrisersHyderabad.add('Klasin');
+        SunrisersHyderabad.add('Andrew');
         
         system.debug('SunrisersHyderabad ' + 'SunrisersHyderabad');
         system.debug('ChannaiSuperkings ' + 'ChannaiSuperkings');
