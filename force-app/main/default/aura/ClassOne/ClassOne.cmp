@@ -1,8 +1,0 @@
-<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
-	
-    <aura:attribute name="message" type="string" default="Default"/>
-    Welcome to Aura Component ! <br/><br/>
-    {!v.message}
-    
-    
-</aura:component>

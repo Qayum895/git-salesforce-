@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "Gitbranching",
+  "name": "GIT-SALESFORCE",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "61.0"
