@@ -2,7 +2,7 @@ public class EmployeeTaxpayer { //Requirement if the employee salary is greater-
 	
     public static Boolean EmployeeSalaryMethod(Integer Salary){ //Created static boolean Employeesalarymethod and integer salary(Primitive variables).
         Boolean Taxpayable;						//Created boolean as taxpayable.
-        String name = 'Mohammed Abrar';			//Created String name is mohammed qayum.
+        String name = 'Mohammed salman salman';			//Created String name is mohammed qayum.
         Taxpayable = true;						//Giving the boolean taxpayable value is true.
         System.debug('Name ' + name);			//Created System.debug method helps to print the value of name and gives output of variable in debug logs.
         if(salary > 888){                                                                 
