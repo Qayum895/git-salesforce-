@@ -8,7 +8,7 @@ public class Hyderabadstars {
         
         name = 'Mohammed Abrar';
         age = '29' ;
-        name = 'CSK';
+        name = 'Hyderabad';
         age = '28' ;
 
         Married = true;
