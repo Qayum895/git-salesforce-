@@ -1,0 +1,12 @@
+Lets Understand the Apex Coding (Sample Apex Class)
+We will create a New Feature branch from the base branch (git branch branchname)
+We have to checkout/Swtich into new created branch (git checkout)
+We will create one apex class and add some Code Changes
+Save the file
+We have to add the changes from working area to staging area (git add .)
+We have to see the status of current changes with (git Status)
+We have to commit the staging area changes (git commit -m "message")
+We have to see the status of current changes with (git Status)
+We have to push the changes to gitHub Browser (git push) or For New branch we have to publish the branch by using the command like (git push --set-estreem origin branchname)
+Once our changes are pushed into GitHub Browser then Raise PR (Pull Request).
+Once PR is approved from our Dev team lead then the changes are going to merge into the Base Branch.
