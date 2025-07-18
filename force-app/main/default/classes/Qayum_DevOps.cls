@@ -6,9 +6,7 @@ public with sharing class Qayum_DevOps {
     }
 
 
-    // Method to fetch latest deployment records and environment history
-
-    // Method to fetch latest deployment records
+    // This is my new file and taklen from ChatGPT 
 
     public List<Deployment__c> getRecentDeployments(Integer limitSize) {
         List<Deployment__c> deploymentList = [
@@ -18,7 +16,7 @@ public with sharing class Qayum_DevOps {
             LIMIT :limitSize
         ];
 
-        // Logging the results
+        // Logging the results and giving in the print statement
         for (Deployment__c dep : deploymentList) {
             System.debug('Deployment Name: ' + dep.Name);
             System.debug('Status: ' + dep.Status__c);
