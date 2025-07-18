@@ -5,7 +5,11 @@ public with sharing class Qayum_DevOps {
         // Optional: initialization code
     }
 
+
+    // Method to fetch latest deployment records and environment history
+
     // Method to fetch latest deployment records
+
     public List<Deployment__c> getRecentDeployments(Integer limitSize) {
         List<Deployment__c> deploymentList = [
             SELECT Name, Status__c, Environment__c, Deployed_By__c, Deployment_Date__c 
