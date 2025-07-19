@@ -1,5 +1,5 @@
 public class CodeCoverage {
 
-    //File Added
+    //File Added and code coverage is 75 %
 
 }
