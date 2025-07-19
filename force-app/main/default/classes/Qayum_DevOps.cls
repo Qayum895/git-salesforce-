@@ -18,7 +18,7 @@ public with sharing class Qayum_DevOps {
             LIMIT :limitSize
         ];
 
-        // Logging the results
+        // Logging the results and print statement
         for (Deployment__c dep : deploymentList) {
             System.debug('Deployment Name: ' + dep.Name);
             System.debug('Status: ' + dep.Status__c);
