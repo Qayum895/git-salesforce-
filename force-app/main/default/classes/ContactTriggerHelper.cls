@@ -10,7 +10,7 @@ public class ContactTriggerHelper {
                  }
            }
            List<contact> consList = [select id, description, AccountId from contact where AccountId IN : descMap.keySet()];
-           if(!consList.isEmpty()){
+           if(!consList.isEmpty()){                                                                                                //If Condition to showcase the list empty
                for(contact cons : consList){
                    if(descMap.containsKey(cons.AccountId)){
                        cons.description =descMap.get(cons.AccountId);
