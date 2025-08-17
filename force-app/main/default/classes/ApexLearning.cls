@@ -4,13 +4,14 @@ public class ApexLearning {
     public String profession ;
   
     public void getData(){
-     
-        name = 'Mohammed Qayum';
-        profession = 'Release Engineer';
+        name = 'Mohammed qayyum';
+        profession = 'Release Manager';
         
         System.debug(name);
         System.debug('profession' + profession);
         
-    } 
+    }
     
 }
+
+//Abrar devops trainging
