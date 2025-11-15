@@ -1,18 +1,15 @@
-public class ApexLearning {
-    
+public class Salesforce_DevOps {
+
     public String name;
     public String profession ;
-  
+
     public void getData(){ //METHOD
      
-
-        name = 'Mohammed Qayum';
-        profession = 'Salesforce Release Engineer';
-
+        name = 'Shaik Nadeem'; //values
+        profession = 'DevOps Engineer'; //values
         
         System.debug(name);
         System.debug('profession' + profession); //Print statement
-        
-    } 
-    
+
+    }
 }
