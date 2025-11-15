@@ -1,0 +1,64 @@
+name: main Branch to Production
+on: 
+  push:
+    branches:
+      - main
+ 
+jobs:
+  SFDX-CLI-Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: echo "🐧 GitHub Action running on ${{ runner.os }}"
+      - run: echo "🔎 Retrieving main Branch from ${{ github.repository }}."
+      - uses: actions/checkout@v4
+        with: 
+          ref: 'main'
+      - name: 'Read PR Body and Format Tests'
+        env:
+           PR_BODY: ${{ github.event.head_commit.message }}
+        run: |
+             echo "Original Merge Commit Message: $PR_BODY"
+      
+             # Extract test classes using regex (Modify based on your commit message pattern)
+             TESTS=$(echo "$PR_BODY" | grep -oP '(?<=TESTS: )[^]]*' || echo "all")
+      
+             # Save extracted test classes
+             echo "Extracted Tests: $TESTS"
+             echo "APEX_TESTS=$TESTS" >> $GITHUB_ENV
+  
+             # Ensure the merge comment appears in a structured format
+             echo "Formatted Commit Message:"
+             echo "Merge Commit: $(echo "$PR_BODY" | tr '\n' ' ')"
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install Salesforce CLI
+        run: |
+          npm install @salesforce/cli --global
+          sf --help
+          pip install xq
+          pip install yq
+      - name: Install sfdxGit delta
+        run: |
+          echo y | sf plugins install sfdx-git-delta
+          sf sgd:source:delta --to "HEAD" --from "HEAD~1"  --output "." --ignore .github/workflows/ignore.txt
+
+      - name: Update API Version in package.xml
+        run: |
+          sed -i 's|<version>55.0</version>|<version>63.0</version>|g' package/package.xml
+          cat package/package.xml
+          
+      - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
+      - run: sf org login jwt --client-id 3MVG9CecKwYCDceQRpL9O8Hfersdjp993muzGTxjN_DugY4Ni375dQAJwajf8TMm7LolxfCmpMRArfrDdoHbC --jwt-key-file server.key --username qayum@primesolution.com --instance-url https://primeonesolution-dev-ed.develop.my.salesforce.com --alias production
+      - name: Deploy Delta components to Salesforce RunSpecifiedTests
+        if: ${{ env.APEX_TESTS != 'all' }}
+        run: |
+          sf project deploy start --manifest package/package.xml --test-level RunSpecifiedTests --tests ${{ env.APEX_TESTS }} --target-org production --ignore-conflicts --api-version 63.0
+ 
+      - name: Deploy Delta components to Salesforce RunLocalTests
+        if: ${{ env.APEX_TESTS == 'all' }}
+        run: |
+            sf project deploy start --manifest package/package.xml --test-level RunLocalTests --target-org production --ignore-conflicts --api-version 63.0

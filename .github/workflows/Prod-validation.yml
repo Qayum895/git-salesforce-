@@ -1,5 +1,5 @@
 ---
-    name: validate delta changes in PR
+    name: validate delta changes in Production
     on:
       pull_request:
         branches:
@@ -31,7 +31,7 @@
               pip install xq
               pip install yq
           - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
-          - run: sf org login jwt --client-id 3MVG9CecKwYCDceQRpL9O8Hfersdjp993muzGTxjN_DugY4Ni375dQAJwajf8TMm7LolxfCmpMRArfrDdoHbC --jwt-key-file server.key --username qayum@primesolution.com --instance-url https://primeonesolution-dev-ed.develop.my.salesforce.com --alias prod
+          - run: sf org login jwt --client-id 3MVG9CecKwYCDceQRpL9O8Hfersdjp993muzGTxjN_DugY4Ni375dQAJwajf8TMm7LolxfCmpMRArfrDdoHbC --jwt-key-file server.key --username 	qayum@primesolution.com --instance-url http://primeonesolution-dev-ed.develop.my.salesforce.com --alias production
           - name: Debug Test Classes File
             run: cat test-classes.txt
           - name: Read Test Class Names from File
@@ -55,7 +55,7 @@
               sf sgd source delta --to "HEAD" --from "origin/main" --output "." --ignore .github/workflows/ignore.txt    
           - name: Update API Version in package.xml
             run: |
-                  sed -i 's|<version>55.0</version>|<version>61.0</version>|g' package/package.xml
+                  sed -i 's|<version>55.0</version>|<version>63.0</version>|g' package/package.xml
                   cat package/package.xml
           - name: Debug Environment Variables
             run: |
@@ -71,4 +71,4 @@
     
               echo "Running specified tests: ${{ env.TEST_CLASSES }}"
     
-              sf project deploy validate --manifest package/package.xml --test-level RunSpecifiedTests --tests ${{ env.TEST_CLASSES }} --target-org prod --api-version 61.0
+              sf project deploy validate --manifest package/package.xml --test-level RunSpecifiedTests --tests ${{ env.TEST_CLASSES }} --target-org Production --api-version 63.0
