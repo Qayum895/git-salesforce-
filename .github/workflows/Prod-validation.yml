@@ -71,4 +71,4 @@
     
               echo "Running specified tests: ${{ env.TEST_CLASSES }}"
     
-              sf project deploy validate --manifest package/package.xml --test-level RunSpecifiedTests --tests ${{ env.TEST_CLASSES }} --target-org Production --api-version 63.0
+              sf project deploy validate --manifest package/package.xml --test-level RunSpecifiedTests --tests ${{ env.TEST_CLASSES }} --target-org production --api-version 63.0
