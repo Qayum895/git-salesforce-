@@ -30,7 +30,6 @@ private class VerifyDateTest {
     }  
 }
 /*
-Today am giving a demo on GitHub Actions Devops
-add Merge comments like
+Today we are giving GitHub Demo
 // This is old apex test class and not modifeied
 */
