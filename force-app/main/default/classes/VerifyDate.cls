@@ -33,3 +33,7 @@ public class VerifyDate {
  add Merge comments like
  Apex::[VerifyDateTest]::Apex
  */
+
+ //Today we are discussing on salesforce CLI Deployment
+
+ //I have added a method succesfully 
